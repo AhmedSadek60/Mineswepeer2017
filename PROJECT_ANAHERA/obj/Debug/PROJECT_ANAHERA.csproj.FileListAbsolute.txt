@@ -104,3 +104,12 @@ E:\Minesweeper 2016\New folder\PROJECT_ANAHERA\obj\Debug\PROJECT_ANAHERA.Form1.r
 E:\Minesweeper 2016\New folder\PROJECT_ANAHERA\obj\Debug\PROJECT_ANAHERA.Properties.Resources.resources
 E:\Minesweeper 2016\New folder\PROJECT_ANAHERA\obj\Debug\PROJECT_ANAHERA.csproj.GenerateResource.Cache
 E:\Minesweeper 2016\New folder\PROJECT_ANAHERA\obj\Debug\PROJECT_ANAHERA.csprojResolveAssemblyReference.cache
+C:\Users\ahmed\Documents\GitHub\Mineswepeer2017\PROJECT_ANAHERA\bin\Debug\PROJECT_ANAHERA.exe.config
+C:\Users\ahmed\Documents\GitHub\Mineswepeer2017\PROJECT_ANAHERA\obj\Debug\PROJECT_ANAHERA.exe
+C:\Users\ahmed\Documents\GitHub\Mineswepeer2017\PROJECT_ANAHERA\obj\Debug\PROJECT_ANAHERA.pdb
+C:\Users\ahmed\Documents\GitHub\Mineswepeer2017\PROJECT_ANAHERA\obj\Debug\PROJECT_ANAHERA.csprojResolveAssemblyReference.cache
+C:\Users\ahmed\Documents\GitHub\Mineswepeer2017\PROJECT_ANAHERA\obj\Debug\PROJECT_ANAHERA.Form1.resources
+C:\Users\ahmed\Documents\GitHub\Mineswepeer2017\PROJECT_ANAHERA\obj\Debug\PROJECT_ANAHERA.Properties.Resources.resources
+C:\Users\ahmed\Documents\GitHub\Mineswepeer2017\PROJECT_ANAHERA\obj\Debug\PROJECT_ANAHERA.csproj.GenerateResource.Cache
+C:\Users\ahmed\Documents\GitHub\Mineswepeer2017\PROJECT_ANAHERA\bin\Debug\PROJECT_ANAHERA.exe
+C:\Users\ahmed\Documents\GitHub\Mineswepeer2017\PROJECT_ANAHERA\bin\Debug\PROJECT_ANAHERA.pdb

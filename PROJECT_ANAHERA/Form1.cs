@@ -18,6 +18,8 @@ namespace PROJECT_ANAHERA
         CheckBox[,] cbz = new CheckBox[19, 19]; //creat a 6x6 check boxs
         string thePort = "";
         int mx = 0; int my = 0;
+        CheckBox box1=new CheckBox();
+        CheckBox box2=new CheckBox();
         PictureBox ArrowR = new PictureBox
         {
             Name = "pictureBox",
@@ -91,19 +93,18 @@ namespace PROJECT_ANAHERA
             this.Controls.Add(ArrowB);
             ArrowB.ImageLocation = @"C:\Users\ahmed\Desktop\New folder\PROJECT_ANAHERA\Resources\ArrowB.jpg";
 
-            this.Controls.Add(A);
+         /*   this.Controls.Add(A);
             A.ImageLocation = @"C:\Users\ahmed\Desktop\New folder\PROJECT_ANAHERA\Resources\ArrowF.jpg";
 
             this.Controls.Add(D);
             D.ImageLocation = @"C:\Users\ahmed\Desktop\New folder\PROJECT_ANAHERA\Resources\ArrowB.jpg";
-
+*/
             buf = "";
             InitializeComponent();
             creatCheck(); //to creat an array of check boxs
             creatCheckz();
 
-            CheckBox box1;
-            box1 = new CheckBox();
+           
             box1.AutoSize = true;
             box1.Location = new Point(260, 250);
             box1.CheckState = CheckState.Unchecked;
@@ -116,8 +117,8 @@ namespace PROJECT_ANAHERA
             this.Controls.Add(box1_text);
 
 
-            CheckBox box2;
-            box2 = new CheckBox();
+          
+       
             box2.AutoSize = true;
             box2.Location = new Point(260, 290);
             box2.CheckState = CheckState.Unchecked;
@@ -336,9 +337,9 @@ namespace PROJECT_ANAHERA
                 ArrowF.ImageLocation = @"C:\Users\ahmed\Desktop\New folder\PROJECT_ANAHERA\Resources\ArrowFR.jpg";
                 if (serialPort1.IsOpen)
                 {
-                    if(CheckBox.box1.checked==true && CheckBox.box2.checked==false )
+                    if(box1.Checked==true && box2.Checked==false )
                        serialPort1.WriteLine("2");
-                    if(CheckBox.box2.checked==true && CheckBox.box1.checked==false)
+                    if(box2.Checked==true && box1.Checked==false)
                          serialPort1.WriteLine("3");
                     else
                     serialPort1.WriteLine("1");
@@ -420,9 +421,7 @@ namespace PROJECT_ANAHERA
             return base.ProcessCmdKey(ref msg, keyData);
         }
     }
-}
-      
-      
+
     class Mine
     {
         int x, y;
