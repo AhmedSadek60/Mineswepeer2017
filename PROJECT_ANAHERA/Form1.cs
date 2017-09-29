@@ -270,12 +270,14 @@ namespace PROJECT_ANAHERA
         {
             try
             {
-                toDecode = toDecode.Trim('"');
+               // int u = toDecode.Length;
+               // toDecode = toDecode.Substring(1, u-1);
+               toDecode = toDecode.Trim('"');
                 da = Array.ConvertAll(toDecode.Split(','), double.Parse);
             }
             catch
             {
-                MessageBox.Show("No data found!", "Recieving Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+              //  MessageBox.Show("No data found!", "Recieving Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -374,17 +376,23 @@ namespace PROJECT_ANAHERA
             }
            Default_Image();
             //capture right arrow key
-            if (keyData == Keys.Right)
-            {
-                ArrowR.ImageLocation = @"C:\Users\ahmed\Desktop\New folder\PROJECT_ANAHERA\Resources\ArrowRR.jpg";
-                if (serialPort1.IsOpen)
-                {
-                    serialPort1.WriteLine("R");
-                }
+           if (keyData == Keys.Right)
+           {
+               ArrowR.ImageLocation = @"C:\Users\ahmed\Desktop\New folder\PROJECT_ANAHERA\Resources\ArrowRR.jpg";
+               if (serialPort1.IsOpen)
+               {
+                   serialPort1.WriteLine("R");
+               }
                // Default_Image();
-                return true;
-            }
+               return true;
+           }
+           else {
+               if (serialPort1.IsOpen)
+               {
+                   serialPort1.WriteLine("S");
 
+               }
+           }
       /*     Default_Image();
             if (keyData == Keys.A)
             {
@@ -396,7 +404,7 @@ namespace PROJECT_ANAHERA
               //  Default_Image();
                 return true;
             }*/
-            Default_Image();
+          /*  Default_Image();
             if (keyData == Keys.S)
             {
                 if (serialPort1.IsOpen)
@@ -405,7 +413,8 @@ namespace PROJECT_ANAHERA
                 }
                // Default_Image();
                 return true;
-            }
+            }*/
+           
         /*    Default_Image();
             if (keyData == Keys.D)
             {
