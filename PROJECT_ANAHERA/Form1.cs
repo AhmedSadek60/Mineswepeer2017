@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -20,6 +21,9 @@ namespace PROJECT_ANAHERA
         int mx = 0; int my = 0;
         CheckBox box1=new CheckBox();
         CheckBox box2=new CheckBox();
+        Boolean myFlag = false;
+        string sent_char, last_char="R";
+        public string X_reading, Y_reading, State_reading, lines; 
         PictureBox ArrowR = new PictureBox
         {
             Name = "pictureBox",
@@ -217,7 +221,7 @@ namespace PROJECT_ANAHERA
                     catch
                     {
 
-
+                       
                     }
 
                     //dataLog.Items.Add(serialPort1.ReadLine());
@@ -262,6 +266,7 @@ namespace PROJECT_ANAHERA
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
         {
             serialPort1.Close();
+            
         }
 
 
@@ -307,7 +312,17 @@ namespace PROJECT_ANAHERA
                     if (cb[x, y].state != "clear")
                     {
                         listBox1.Items.Add("Mine at : " + x.ToString() + "," + y.ToString() + " state : " + cb[x, y].state);
-
+                        X_reading = x.ToString();
+                         Y_reading = y.ToString();
+                        State_reading = cb[x, y].state;
+                         lines = "Mine at : "+ X_reading +" , "+Y_reading+" state: "+State_reading ;
+                        // System.IO.File.WriteAllText(@"C:\Users\ahmed\Desktop\Mine.txt", lines + Environment.NewLine, String.Empty);
+                        System.IO.File.AppendAllText(@"C:\Users\ahmed\Desktop\Mine.txt", String.Empty);
+                         TextWriter tw = new StreamWriter(@"C:\Users\ahmed\Desktop\Mine.txt", true);
+                        // tw.;
+                         tw.WriteLine(lines);
+                         tw.Close();
+                        
                     }
                 }
             }
@@ -329,22 +344,46 @@ namespace PROJECT_ANAHERA
         {
 
         }
-
+        
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
+            
             //capture up arrow key
+           
+        
             Default_Image();
             if (keyData == Keys.Up)
             {
                 ArrowF.ImageLocation = @"C:\Users\ahmed\Desktop\New folder\PROJECT_ANAHERA\Resources\ArrowFR.jpg";
                 if (serialPort1.IsOpen)
                 {
-                    if(box1.Checked==true && box2.Checked==false )
-                       serialPort1.WriteLine("2");
-                    if(box2.Checked==true && box1.Checked==false)
-                         serialPort1.WriteLine("3");
+                    if (box1.Checked == true && box2.Checked == false)
+                    {
+                        if (last_char != "2")
+                        {
+                            sent_char = "2";
+                            serialPort1.WriteLine(sent_char);
+                            last_char = sent_char;
+                        }
+                    }
+                    else if (box2.Checked == true && box1.Checked == false)
+                    {
+                        if (last_char != "3")
+                        {
+                            sent_char = "3";
+                            serialPort1.WriteLine(sent_char);
+                            last_char = sent_char;
+                        }
+                    }
                     else
-                    serialPort1.WriteLine("1");
+                    {
+                        if (last_char != "1")
+                        {
+                            sent_char = "1";
+                            serialPort1.WriteLine(sent_char);
+                            last_char = sent_char;
+                        }
+                    }
                 }
               //  Default_Image();
                 return true;
@@ -356,19 +395,31 @@ namespace PROJECT_ANAHERA
                ArrowB.ImageLocation = @"C:\Users\ahmed\Desktop\New folder\PROJECT_ANAHERA\Resources\ArrowBR.jpg";
                 if (serialPort1.IsOpen)
                 {
-                    serialPort1.WriteLine("B");   
+                    if (last_char != "L")
+                    {
+                        sent_char = "B";
+                        serialPort1.WriteLine(sent_char);
+                        last_char = sent_char;
+                    }
+                   
                 }
                // Default_Image();
                 return true;
             }
            Default_Image();
             //capture left arrow key
-            if (keyData == Keys.Left)
+             if (keyData == Keys.Left)
             {
                 ArrowL.ImageLocation = @"C:\Users\ahmed\Desktop\New folder\PROJECT_ANAHERA\Resources\ArrowLR.jpg";
                 if (serialPort1.IsOpen)
                 {
-                    serialPort1.WriteLine("L");
+                    if (last_char != "L")
+                    {
+                        sent_char = "L";
+                        serialPort1.WriteLine(sent_char);
+                        last_char = sent_char;
+
+                    }
                 }
                 
             //  Default_Image();
@@ -381,54 +432,36 @@ namespace PROJECT_ANAHERA
                ArrowR.ImageLocation = @"C:\Users\ahmed\Desktop\New folder\PROJECT_ANAHERA\Resources\ArrowRR.jpg";
                if (serialPort1.IsOpen)
                {
-                   serialPort1.WriteLine("R");
+                   if (last_char != "R")
+                   {
+                       sent_char = "R";
+                       serialPort1.WriteLine(sent_char);
+                       last_char = sent_char;
+                   }
                }
                // Default_Image();
                return true;
            }
-           else {
+           if(keyData==null) {
                if (serialPort1.IsOpen)
                {
-                   serialPort1.WriteLine("S");
-
+                   if (last_char != "S")
+                   {
+                       sent_char = "S";
+                       serialPort1.WriteLine(sent_char);
+                       last_char = sent_char;
+                   }
                }
            }
-      /*     Default_Image();
-            if (keyData == Keys.A)
-            {
-                A.ImageLocation = @"C:\Users\ahmed\Desktop\New folder\PROJECT_ANAHERA\Resources\ArrowFR.jpg";
-                if (serialPort1.IsOpen)
-                {
-                    serialPort1.WriteLine("U");
-                }
-              //  Default_Image();
-                return true;
-            }*/
-          /*  Default_Image();
-            if (keyData == Keys.S)
-            {
-                if (serialPort1.IsOpen)
-                {
-                    serialPort1.WriteLine("S");
-                }
-               // Default_Image();
-                return true;
-            }*/
-           
-        /*    Default_Image();
-            if (keyData == Keys.D)
-            {
-                D.ImageLocation = @"C:\Users\ahmed\Desktop\New folder\PROJECT_ANAHERA\Resources\ArrowBR.jpg";
-                if (serialPort1.IsOpen)
-                {
-                    serialPort1.WriteLine("D");
-                }
-              //  Default_Image();
-                return true;
-            }
-           */
+   
             return base.ProcessCmdKey(ref msg, keyData);
         }
+
+        public bool SuppressKeyPress { get; set; }
+     //  Mine_txt mine_ins = new Mine_txt();
+      // mine_ins.Mine_txt();
+       // Mine_txt();
+     
     }
 
     class Mine
@@ -457,4 +490,5 @@ namespace PROJECT_ANAHERA
         }
     }
 
+  
 }
