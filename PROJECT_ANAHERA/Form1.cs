@@ -395,7 +395,7 @@ namespace PROJECT_ANAHERA
                ArrowB.ImageLocation = @"C:\Users\ahmed\Desktop\New folder\PROJECT_ANAHERA\Resources\ArrowBR.jpg";
                 if (serialPort1.IsOpen)
                 {
-                    if (last_char != "L")
+                    if (last_char != "B")
                     {
                         sent_char = "B";
                         serialPort1.WriteLine(sent_char);
@@ -442,7 +442,7 @@ namespace PROJECT_ANAHERA
                // Default_Image();
                return true;
            }
-           if(keyData==null) {
+           if(keyData==Keys.S) {
                if (serialPort1.IsOpen)
                {
                    if (last_char != "S")
