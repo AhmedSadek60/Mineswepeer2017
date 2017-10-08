@@ -21,59 +21,58 @@ namespace PROJECT_ANAHERA
         int mx = 0; int my = 0;
         CheckBox box1=new CheckBox();
         CheckBox box2=new CheckBox();
-        Boolean myFlag = false;
         string sent_char, last_char="R";
-        public string X_reading, Y_reading, State_reading, lines; 
+        public string X_reading, Y_reading, State_reading, lines;
+        public string path,completepath;
         PictureBox ArrowR = new PictureBox
         {
             Name = "pictureBox",
             Size = new Size(65, 65),
-            Location = new Point(260, 450)
+            Location = new Point(240, 450)
         };
 
         PictureBox ArrowL = new PictureBox
         {
             Name = "pictureBox",
             Size = new Size(65, 65),
-            Location = new Point(100, 450)
+            Location = new Point(80, 450)
         };
 
         PictureBox ArrowF = new PictureBox
         {
             Name = "pictureBox",
             Size = new Size(65, 65),
-            Location = new Point(180, 400)
+            Location = new Point(160, 400)
         };
 
         PictureBox ArrowB = new PictureBox
         {
             Name = "pictureBox",
             Size = new Size(65, 65),
-            Location = new Point(180, 500)
+            Location = new Point(160, 500)
         };
 
         PictureBox A = new PictureBox
         {
             Name = "pictureBox",
             Size = new Size(65, 65),
-            Location = new Point(350, 400)
+            Location = new Point(420, 400)
         };
 
         PictureBox D = new PictureBox
         {
             Name = "pictureBox",
             Size = new Size(65, 65),
-            Location = new Point(350, 500)
+            Location = new Point(420, 500)
         };
 
         public void Default_Image()
         {
-            ArrowR.ImageLocation = @"C:\Users\ahmed\Desktop\New folder\PROJECT_ANAHERA\Resources\ArrowR.jpg";
-            ArrowL.ImageLocation = @"C:\Users\ahmed\Desktop\New folder\PROJECT_ANAHERA\Resources\ArrowL.jpg";
-            ArrowF.ImageLocation = @"C:\Users\ahmed\Desktop\New folder\PROJECT_ANAHERA\Resources\ArrowF.jpg";
-            ArrowB.ImageLocation = @"C:\Users\ahmed\Desktop\New folder\PROJECT_ANAHERA\Resources\ArrowB.jpg";
-            A.ImageLocation = @"C:\Users\ahmed\Desktop\New folder\PROJECT_ANAHERA\Resources\ArrowF.jpg";
-            D.ImageLocation = @"C:\Users\ahmed\Desktop\New folder\PROJECT_ANAHERA\Resources\ArrowB.jpg";
+            ArrowR.Image = Properties.Resources.ArrowR;
+            ArrowL.Image = Properties.Resources.ArrowL;
+            ArrowF.Image = Properties.Resources.ArrowF;
+            ArrowB.Image = Properties.Resources.ArrowB;
+          
         }
 
 
@@ -83,56 +82,35 @@ namespace PROJECT_ANAHERA
 
 
             this.Controls.Add(ArrowR);
-            ArrowR.ImageLocation = @"C:\Users\ahmed\Desktop\New folder\PROJECT_ANAHERA\Resources\ArrowR.jpg";
+            ArrowR.Image = Properties.Resources.ArrowR;
 
 
             this.Controls.Add(ArrowL);
-            ArrowL.ImageLocation = @"C:\Users\ahmed\Desktop\New folder\PROJECT_ANAHERA\Resources\ArrowL.jpg";
+            ArrowL.Image = Properties.Resources.ArrowL;
 
 
             this.Controls.Add(ArrowF);
-            ArrowF.ImageLocation = @"C:\Users\ahmed\Desktop\New folder\PROJECT_ANAHERA\Resources\ArrowF.jpg";
+            ArrowF.Image = Properties.Resources.ArrowF;
 
 
             this.Controls.Add(ArrowB);
-            ArrowB.ImageLocation = @"C:\Users\ahmed\Desktop\New folder\PROJECT_ANAHERA\Resources\ArrowB.jpg";
+            ArrowB.Image = Properties.Resources.ArrowB;
 
-         /*   this.Controls.Add(A);
-            A.ImageLocation = @"C:\Users\ahmed\Desktop\New folder\PROJECT_ANAHERA\Resources\ArrowF.jpg";
-
-            this.Controls.Add(D);
-            D.ImageLocation = @"C:\Users\ahmed\Desktop\New folder\PROJECT_ANAHERA\Resources\ArrowB.jpg";
-*/
             buf = "";
             InitializeComponent();
             creatCheck(); //to creat an array of check boxs
             creatCheckz();
 
            
-            box1.AutoSize = true;
-            box1.Location = new Point(260, 250);
-            box1.CheckState = CheckState.Unchecked;
-            this.Controls.Add(box1);
+          
 
-            Label box1_text;
-            box1_text = new Label();
-            box1_text.Text = "Fast";
-            box1_text.Location = new Point(280, 250);
-            this.Controls.Add(box1_text);
+           
 
 
           
-       
-            box2.AutoSize = true;
-            box2.Location = new Point(260, 290);
-            box2.CheckState = CheckState.Unchecked;
-            this.Controls.Add(box2);
+   
 
-            Label box2_text;
-            box2_text = new Label();
-            box2_text.Text = "Too Fast";
-            box2_text.Location = new Point(280, 290);
-            this.Controls.Add(box2_text);
+           
         }
         void creatCheck()
         {
@@ -223,9 +201,6 @@ namespace PROJECT_ANAHERA
 
                        
                     }
-
-                    //dataLog.Items.Add(serialPort1.ReadLine());
-                    // serialPort1.DiscardInBuffer();
                 }
 
             }
@@ -237,7 +212,6 @@ namespace PROJECT_ANAHERA
             if (serialPort1.IsOpen)
             {
 
-                //serialPort1.WriteLine("u" + trackBar1.Value.ToString());
                 serialPort1.WriteLine(textBox1.Text);
             }
             else
@@ -275,8 +249,6 @@ namespace PROJECT_ANAHERA
         {
             try
             {
-               // int u = toDecode.Length;
-               // toDecode = toDecode.Substring(1, u-1);
                toDecode = toDecode.Trim('"');
                 da = Array.ConvertAll(toDecode.Split(','), double.Parse);
             }
@@ -305,6 +277,7 @@ namespace PROJECT_ANAHERA
         private void update()
         {
             listBox1.Items.Clear();
+            
             for (int x = 0; x < 19; x++)
             {
                 for (int y = 0; y < 19; y++)
@@ -316,10 +289,8 @@ namespace PROJECT_ANAHERA
                          Y_reading = y.ToString();
                         State_reading = cb[x, y].state;
                          lines = "Mine at : "+ X_reading +" , "+Y_reading+" state: "+State_reading ;
-                        // System.IO.File.WriteAllText(@"C:\Users\ahmed\Desktop\Mine.txt", lines + Environment.NewLine, String.Empty);
-                        System.IO.File.AppendAllText(@"C:\Users\ahmed\Desktop\Mine.txt", String.Empty);
-                         TextWriter tw = new StreamWriter(@"C:\Users\ahmed\Desktop\Mine.txt", true);
-                        // tw.;
+                         System.IO.File.AppendAllText(completepath, string.Empty);
+                         TextWriter tw = new StreamWriter(completepath, true);
                          tw.WriteLine(lines);
                          tw.Close();
                         
@@ -328,15 +299,8 @@ namespace PROJECT_ANAHERA
             }
         }
 
-        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //serialPort1.PortName = "COM9"; //editable
-            //MessageBox.Show( comboBox1.SelectedItem.ToString());
             thePort = comboBox1.SelectedItem.ToString();
         }
 
@@ -354,10 +318,10 @@ namespace PROJECT_ANAHERA
             Default_Image();
             if (keyData == Keys.Up)
             {
-                ArrowF.ImageLocation = @"C:\Users\ahmed\Desktop\New folder\PROJECT_ANAHERA\Resources\ArrowFR.jpg";
+                ArrowF.Image= Properties.Resources.ArrowFR;
                 if (serialPort1.IsOpen)
                 {
-                    if (box1.Checked == true && box2.Checked == false)
+                    if (checkBox4.Checked == true && checkBox5.Checked == false)
                     {
                         if (last_char != "2")
                         {
@@ -366,7 +330,7 @@ namespace PROJECT_ANAHERA
                             last_char = sent_char;
                         }
                     }
-                    else if (box2.Checked == true && box1.Checked == false)
+                    else if (checkBox5.Checked == true && checkBox4.Checked == false)
                     {
                         if (last_char != "3")
                         {
@@ -391,8 +355,8 @@ namespace PROJECT_ANAHERA
             Default_Image();
             //capture down arrow key       
             if (keyData == Keys.Down)
-            {  
-               ArrowB.ImageLocation = @"C:\Users\ahmed\Desktop\New folder\PROJECT_ANAHERA\Resources\ArrowBR.jpg";
+            {
+                ArrowB.Image = Properties.Resources.ArrowBR;
                 if (serialPort1.IsOpen)
                 {
                     if (last_char != "B")
@@ -410,7 +374,7 @@ namespace PROJECT_ANAHERA
             //capture left arrow key
              if (keyData == Keys.Left)
             {
-                ArrowL.ImageLocation = @"C:\Users\ahmed\Desktop\New folder\PROJECT_ANAHERA\Resources\ArrowLR.jpg";
+                ArrowL.Image = Properties.Resources.ArrowLR;
                 if (serialPort1.IsOpen)
                 {
                     if (last_char != "L")
@@ -429,7 +393,7 @@ namespace PROJECT_ANAHERA
             //capture right arrow key
            if (keyData == Keys.Right)
            {
-               ArrowR.ImageLocation = @"C:\Users\ahmed\Desktop\New folder\PROJECT_ANAHERA\Resources\ArrowRR.jpg";
+               ArrowR.Image = Properties.Resources.ArrowRR;
                if (serialPort1.IsOpen)
                {
                    if (last_char != "R")
@@ -458,10 +422,32 @@ namespace PROJECT_ANAHERA
         }
 
         public bool SuppressKeyPress { get; set; }
-     //  Mine_txt mine_ins = new Mine_txt();
-      // mine_ins.Mine_txt();
-       // Mine_txt();
-     
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            path = textBox3.Text;
+            completepath = Path.Combine(path,"Mine.txt");
+            if (!File.Exists(completepath))
+            {
+                using (File.Create(completepath));
+                if (File.Exists(completepath))
+                    MessageBox.Show("File Created", "success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                else
+                    MessageBox.Show("Failed to create file", "Failure", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else if (File.Exists(completepath))
+            {
+                MessageBox.Show("File Exists", "success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            FileStream fileStream = File.Open(completepath, FileMode.Open);
+            fileStream.SetLength(0);
+            MessageBox.Show("File Cleared", "Cleared", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            fileStream.Close();
+        }
     }
 
     class Mine
